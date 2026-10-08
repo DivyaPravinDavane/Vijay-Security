@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --brand-navy: #0A0F1A;
+    --brand-dark: #111827;
+    --brand-red: #E5322D;
+    --brand-red-hover: #D42722;
+    --brand-card: #F3F5F8;
+    --brand-border: #E3E7EE;
+    --brand-text-dark: #0F172A;
+    --brand-text-muted: #64748B;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  body {
+    background-color: #FFFFFF;
+    color: #0F172A;
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: var(--font-heading), 'Barlow Semi Condensed', 'Oswald', sans-serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Custom utility classes */
+.bg-navy {
+  background-color: #0A0F1A;
+}
+
+.bg-brand-red {
+  background-color: #E5322D;
+}
+
+.text-brand-red {
+  color: #E5322D;
+}
+
+.border-brand-border {
+  border-color: #E3E7EE;
+}
+
+.bg-brand-card {
+  background-color: #F3F5F8;
+}
+
+/* Red glow effects */
+.red-glow {
+  box-shadow: 0 0 25px rgba(229, 50, 45, 0.45);
+}
+
+.red-glow-sm {
+  box-shadow: 0 0 12px rgba(229, 50, 45, 0.3);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0F1A;
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E5322D;
+}
+
+/* Button shine sweep animation */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -150%;
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 80%
+  );
+  transform: rotate(25deg);
+  transition: all 0.75s ease;
+  pointer-events: none;
+}
+.btn-shine:hover::after {
+  left: 200%;
+}
+
+/* Attention pulse for CTA buttons */
+@keyframes softPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(229, 50, 45, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(229, 50, 45, 0);
+  }
+}
+.animate-attention {
+  animation: softPulse 4s infinite ease-in-out;
+}
+
+/* Scanning line sweep effect */
+@keyframes scanlineSweep {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.6;
+  }
+  85% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(1000%);
+    opacity: 0;
+  }
+}
+.scanline-effect {
+  animation: scanlineSweep 4s ease-in-out 1s infinite;
+}
+
+/* Animated red gradient border */
+@keyframes rotateGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.animated-gradient-border {
+  background-size: 200% 200%;
+  animation: rotateGradient 6s ease infinite;
+}
+
+/* Lenis smooth scroll styling */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
